@@ -89,4 +89,28 @@ def spot_pods(update, context):
         )
 upgrade_handler = CommandHandler('spot_pods', spot_pods)
 dispatcher.add_handler(upgrade_handler)
+
+def infra_autoscaling(update, context):  
+    bot.send_message( 
+        chat_id=update.effective_chat.id, 
+        text="Learn how GKE cluster autoscaler functions - /CA \nCluster autoscaler with node auto-provisioning - /NAP" 
+        )
+start_value=CommandHandler('infra_autoscaling', infra_autoscaling) 
+dispatcher.add_handler (start_value) 
+
+def CA(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="How GKE cluster autoscaler functions: https://medium.com/@narayanmurgod3388/how-gke-cluster-autoscaler-functions-9cf1fdccc867",
+        )
+upgrade_handler = CommandHandler('CA', CA)
+dispatcher.add_handler(upgrade_handler)
+
+def NAP(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Cluster autoscaler with node auto-provisioning: https://medium.com/@narayanmurgod3388/cluster-autoscaler-with-node-auto-provisioning-c2a42c22ee1d",
+        )
+upgrade_handler = CommandHandler('NAP', NAP)
+dispatcher.add_handler(upgrade_handler)
 updater.start_polling()
