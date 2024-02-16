@@ -113,4 +113,53 @@ def NAP(update, context):
         )
 upgrade_handler = CommandHandler('NAP', NAP)
 dispatcher.add_handler(upgrade_handler)
+
+def workload_autoscaling(update, context):  
+    bot.send_message( 
+        chat_id=update.effective_chat.id, 
+        text="Details on HPA - /hpa \ntarget workload for autoscaling is missing - /wl_miss \nMetric for HPA - /metric_hpa \nOperation of an HPA - /hpa_ops \nHPA Does not trigger Scaling Up/Down When Resource Utilization Threshold Is Exceeded - /hpa_algo " 
+        )
+start_value=CommandHandler('workload_autoscaling', workload_autoscaling) 
+dispatcher.add_handler (start_value) 
+
+def hpa(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Horizontal Pod autoscaling (HPA): https://medium.com/@narayanmurgod3388/horizontal-pod-autoscaling-hpa-6c7c86996edb",
+        )
+upgrade_handler = CommandHandler('hpa', hpa)
+dispatcher.add_handler(upgrade_handler)
+
+def wl_miss(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Checking for the presence of the target workload for autoscaling: https://medium.com/@narayanmurgod3388/checking-for-the-presence-of-the-target-workload-for-autoscaling-ecdbb1c1fd0d",
+        )
+upgrade_handler = CommandHandler('wl_miss', wl_miss)
+dispatcher.add_handler(upgrade_handler)
+
+def metric_hpa(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Identifying the Metric for Horizontal Pod Autoscaler (HPA) Autoscaling: https://medium.com/@narayanmurgod3388/identifying-the-metric-for-horizontal-pod-autoscaler-hpa-autoscaling-c244bfdebeec",
+        )
+upgrade_handler = CommandHandler('metric_hpa', metric_hpa)
+dispatcher.add_handler(upgrade_handler)
+
+def hpa_ops(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Comprehending the Operation of an HPA: https://medium.com/@narayanmurgod3388/comprehending-the-operation-of-an-hpa-194432d5867f",
+        )
+upgrade_handler = CommandHandler('hpa_ops', hpa_ops)
+dispatcher.add_handler(upgrade_handler)
+
+def hpa_algo(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="The HPA Doesn’t Trigger Scaling Up/Down When Resource Utilization Threshold Is Exceeded: https://medium.com/@narayanmurgod3388/the-hpa-doesnt-trigger-scaling-up-down-when-resource-utilization-threshold-is-exceeded-487e931a9dc9",
+        )
+upgrade_handler = CommandHandler('hpa_algo', hpa_algo)
+dispatcher.add_handler(upgrade_handler)
+
 updater.start_polling()
