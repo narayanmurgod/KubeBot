@@ -6,6 +6,24 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 updater = Updater(token='6667716259:AAG1F-S_3JfFB09xyYzkYUUl4xkTg9o0s0k', use_context=True) #Replace TOKEN with your token string 
 
 dispatcher = updater.dispatcher 
+
+# Function for /hi
+def hi(update, context):
+        bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="Hey there! \nThis bot helps with general GKE issues. Please type /start to get started..! \n /owner to get to know about me \nConnect with me on LinkedIn /linkedin \nCheck out my GitHub: /github \nRead my articles on Medium: /medium \nSee my contribution on Stack Overflow : /stackoverflow"
+        )
+hi_handler = CommandHandler('hi', hi)
+dispatcher.add_handler(hi_handler)
+
+def owner(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Narayan Murgod (Cloud DevOps/Support engineer) \nCognizant Technology Solutions Pvt Ltd \nHyderabad, India \n2022/02 to Serving notice period \nHere is my resume /resume"
+    )
+owner_handler = CommandHandler('owner', owner)
+dispatcher.add_handler(owner_handler)
+
 # function for /start command on telegram 
 def start(update, context):  
     bot.send_message( 
@@ -193,5 +211,64 @@ def metric_oom(update, context):
         )
 upgrade_handler = CommandHandler('metric_oom', metric_oom)
 dispatcher.add_handler(upgrade_handler)
+
+def resume(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Please find my resume below:",
+        reply_markup=telegram.InlineKeyboardMarkup([[
+            telegram.InlineKeyboardButton("My Resume", url="https://drive.google.com/file/d/1b5I5R47zruCZz2m-U1KI_yzNFn3fPlxh/view?usp=sharing")
+        ]])
+    )
+
+resume_handler = CommandHandler('resume', resume)
+dispatcher.add_handler(resume_handler)
+
+def linkedin(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Connect with me on LinkedIn:",
+        reply_markup=telegram.InlineKeyboardMarkup([[
+            telegram.InlineKeyboardButton("Linkedin", url="https://www.linkedin.com/in/narayan-murgod/")
+        ]])
+    )
+
+start_value2 = CommandHandler('linkedin', linkedin)
+dispatcher.add_handler(start_value2)
+
+def github(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Check out my GitHub:",
+        reply_markup=telegram.InlineKeyboardMarkup([[
+            telegram.InlineKeyboardButton("GitHub", url="https://github.com/narayanmurgod")
+        ]])
+    )
+
+start_value3 = CommandHandler('github', github)
+dispatcher.add_handler(start_value3)
+
+def medium(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Read my articles on Medium:",
+        reply_markup=telegram.InlineKeyboardMarkup([[
+            telegram.InlineKeyboardButton("Medium", url="https://medium.com/@narayanmurgod")
+        ]])
+    )
+start_value4 = CommandHandler('medium', medium)
+dispatcher.add_handler(start_value4)
+
+def stackoverflow(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="See my Stack Overflow profile:",
+        reply_markup=telegram.InlineKeyboardMarkup([[
+            telegram.InlineKeyboardButton("Stack Overflow", url="https://stackoverflow.com/users/16425408/narayan-murgod?tab=profile")
+        ]])
+    )
+
+start_value5 = CommandHandler('stackoverflow', stackoverflow)
+dispatcher.add_handler(start_value5)
 
 updater.start_polling()
