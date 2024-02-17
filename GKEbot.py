@@ -157,9 +157,41 @@ dispatcher.add_handler(upgrade_handler)
 def hpa_algo(update, context):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="The HPA Doesn’t Trigger Scaling Up/Down When Resource Utilization Threshold Is Exceeded: https://medium.com/@narayanmurgod3388/the-hpa-doesnt-trigger-scaling-up-down-when-resource-utilization-threshold-is-exceeded-487e931a9dc9",
+        text="The HPA Does not Trigger Scaling Up/Down When Resource Utilization Threshold Is Exceeded: https://medium.com/@narayanmurgod3388/the-hpa-doesnt-trigger-scaling-up-down-when-resource-utilization-threshold-is-exceeded-487e931a9dc9",
         )
 upgrade_handler = CommandHandler('hpa_algo', hpa_algo)
+dispatcher.add_handler(upgrade_handler)
+
+def cluster_monitoring(update, context):  
+    bot.send_message( 
+        chat_id=update.effective_chat.id, 
+        text="cluster metrics missing? - /metrics_miss \nIs the missing metric specific to a particular pod, container, or label? - /pod_metric_miss \nmetric server OOM? - /metric_oom" 
+        ) 
+start_value1=CommandHandler('cluster_monitoring', cluster_monitoring) 
+dispatcher.add_handler (start_value1) 
+
+def metrics_miss(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Missing metrics? https://medium.com/@narayanmurgod3388/missing-metrics-3b282ebc8ef9",
+        )
+upgrade_handler = CommandHandler('metrics_miss', metrics_miss)
+dispatcher.add_handler(upgrade_handler)
+
+def pod_metric_miss(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Is the missing metric specific to a particular pod, container, or label? https://medium.com/@narayanmurgod/is-the-missing-metric-specific-to-a-particular-pod-container-or-label-52ecbf4b253d",
+        )
+upgrade_handler = CommandHandler('pod_metric_miss', pod_metric_miss)
+dispatcher.add_handler(upgrade_handler)
+
+def metric_oom(update, context):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Is metrics-server experiencing the Out of Memory (OOM) event? https://medium.com/@narayanmurgod/is-metrics-server-experiencing-the-out-of-memory-oom-event-6dd0d524def0",
+        )
+upgrade_handler = CommandHandler('metric_oom', metric_oom)
 dispatcher.add_handler(upgrade_handler)
 
 updater.start_polling()
